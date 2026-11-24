@@ -100,7 +100,10 @@ force-app/                   SFDX metadata
   externalClientApps/ + extlClntApp*    Contentful_Agentforce_Sync External Client App (client credentials)
 migrations/01-agentforce-sync-linkage.js  the routing registry content type
 migrations/demo/seed_multi_type.py         demo: Product Care Guide + FAQ Item types, entries (en/fr/de) and linkages
-force-app/.../aiAuthoringBundles/Contentful_Care_Agent   Agent Script service agent grounded on the retriever
+force-app/.../aiAuthoringBundles/Contentful_Care_Agent   Agent Script service agent (customers) grounded on the retriever
+force-app/.../aiAuthoringBundles/Contentful_Knowledge_Assistant   Agent Script employee agent (reps), same retriever
+force-app/.../permissionsets/Contentful_Knowledge_Assistant_Access   agentAccesses for the employee agent
+migrations/demo/seed_more_content.py      demo: 14 more entries across all three types
 agent/Contentful_Care_Agent-AgentSpec.md   its spec
 ```
 

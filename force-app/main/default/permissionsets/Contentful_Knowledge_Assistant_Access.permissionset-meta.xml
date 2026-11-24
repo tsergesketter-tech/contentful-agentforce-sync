@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <agentAccesses>
+        <agentName>Contentful_Knowledge_Assistant</agentName>
+        <enabled>true</enabled>
+    </agentAccesses>
+    <description>Shows the Contentful Knowledge Assistant employee agent in the Agentforce panel.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Contentful Knowledge Assistant Access</label>
+</PermissionSet>

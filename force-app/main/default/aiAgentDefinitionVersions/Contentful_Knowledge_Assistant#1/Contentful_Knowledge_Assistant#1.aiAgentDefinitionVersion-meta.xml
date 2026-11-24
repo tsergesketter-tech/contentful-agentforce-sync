@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AiAgentDefinitionVersion xmlns="http://soap.sforce.com/2006/04/metadata">
+    <articleAnswersGPTEnabled>false</articleAnswersGPTEnabled>
+    <billingMode>ActionBased</billingMode>
+    <citationsEnabled>false</citationsEnabled>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>The agent instructions</description>
+        <developerName>AgentScriptInternal_agent_instructions</developerName>
+        <includeInPrompt>false</includeInPrompt>
+        <label>Agent Instructions</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>The next topic to be visited</description>
+        <developerName>AgentScriptInternal_next_topic</developerName>
+        <includeInPrompt>false</includeInPrompt>
+        <label>Next Topic</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <copilotPrimaryLanguage>en_US</copilotPrimaryLanguage>
+    <genAiPlannerName>Contentful_Knowledge_Assistant_v1</genAiPlannerName>
+    <isScriptCompatibleAgent>true</isScriptCompatibleAgent>
+    <knowledgeActionEnabled>false</knowledgeActionEnabled>
+    <knowledgeFallbackEnabled>false</knowledgeFallbackEnabled>
+    <planner>
+        <fullName>Contentful_Knowledge_Assistant_v1</fullName>
+        <agentGraphRef>20ZHo000002P3gd</agentGraphRef>
+        <description>Employee agent for service reps: answers product-care questions and drafts customer replies grounded on Contentful content synced to Data 360, with sources.</description>
+        <localTopicLinks>
+            <genAiPluginName>agent_router</genAiPluginName>
+        </localTopicLinks>
+        <localTopicLinks>
+            <genAiPluginName>knowledge_help</genAiPluginName>
+        </localTopicLinks>
+        <localTopicLinks>
+            <genAiPluginName>off_topic</genAiPluginName>
+        </localTopicLinks>
+        <localTopics>
+            <canEscalate>false</canEscalate>
+            <description>Route the rep&apos;s request to the right subagent.</description>
+            <genAiPluginInstructions>
+                <description>You are an internal knowledge assistant for Nestlé consumer-care representatives. You help reps
+answer customer questions about Nescafé and Dolce Gusto, KitKat, Gerber, Purina and other
+products, using only the help content returned by the AnswerQuestionsWithKnowledge action
+(Contentful help articles, product care guides and FAQs). Never answer from general knowledge,
+especially for allergen, ingredient, infant-feeding, pet-health or safety questions.
+You are an AI assistant, not a human. Reply in the language the rep writes in, unless the rep
+asks for a customer reply in a specific language.</description>
+                <developerName>instruction0_179Ho000000wwdk</developerName>
+                <language>en_US</language>
+                <masterLabel>instruction0_179Ho000000wwdk</masterLabel>
+                <sortOrder>1</sortOrder>
+            </genAiPluginInstructions>
+            <language>en_US</language>
+            <localDeveloperName>agent_router</localDeveloperName>
+            <masterLabel>Agent Router</masterLabel>
+            <pluginType>Topic</pluginType>
+        </localTopics>
+        <localTopics>
+            <canEscalate>false</canEscalate>
+            <description>Answer reps&apos; product-care questions and draft customer replies from Contentful help content, with sources.</description>
+            <genAiPluginInstructions>
+                <description>You are an internal knowledge assistant for Nestlé consumer-care representatives. You help reps
+answer customer questions about Nescafé and Dolce Gusto, KitKat, Gerber, Purina and other
+products, using only the help content returned by the AnswerQuestionsWithKnowledge action
+(Contentful help articles, product care guides and FAQs). Never answer from general knowledge,
+especially for allergen, ingredient, infant-feeding, pet-health or safety questions.
+You are an AI assistant, not a human. Reply in the language the rep writes in, unless the rep
+asks for a customer reply in a specific language.</description>
+                <developerName>instruction0_179Ho000000wwdi</developerName>
+                <language>en_US</language>
+                <masterLabel>instruction0_179Ho000000wwdi</masterLabel>
+                <sortOrder>1</sortOrder>
+            </genAiPluginInstructions>
+            <language>en_US</language>
+            <localActionLinks>
+                <functionName>AnswerQuestionsWithKnowledge</functionName>
+            </localActionLinks>
+            <localActions>
+                <description>Searches Nestlé help content (Contentful help articles, product care guides and FAQs in English, French and German): machine troubleshooting, descaling, preparation, storage, recycling, infant formula and foods, pet food, ingredients, allergens, warranty and recalls.</description>
+                <invocationTarget>streamKnowledgeSearch</invocationTarget>
+                <invocationTargetType>standardInvocableAction</invocationTargetType>
+                <isConfirmationRequired>false</isConfirmationRequired>
+                <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+                <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+                <masterLabel>Answer Questions with Knowledge</masterLabel>
+                <progressIndicatorMessage>Searching Contentful help content</progressIndicatorMessage>
+                <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+            </localActions>
+            <localDeveloperName>knowledge_help</localDeveloperName>
+            <masterLabel>Knowledge Help</masterLabel>
+            <pluginType>Topic</pluginType>
+        </localTopics>
+        <localTopics>
+            <canEscalate>false</canEscalate>
+            <description>Redirect requests unrelated to Nestlé product care.</description>
+            <genAiPluginInstructions>
+                <description>You are an internal knowledge assistant for Nestlé consumer-care representatives. You help reps
+answer customer questions about Nescafé and Dolce Gusto, KitKat, Gerber, Purina and other
+products, using only the help content returned by the AnswerQuestionsWithKnowledge action
+(Contentful help articles, product care guides and FAQs). Never answer from general knowledge,
+especially for allergen, ingredient, infant-feeding, pet-health or safety questions.
+You are an AI assistant, not a human. Reply in the language the rep writes in, unless the rep
+asks for a customer reply in a specific language.</description>
+                <developerName>instruction0_179Ho000000wwdj</developerName>
+                <language>en_US</language>
+                <masterLabel>instruction0_179Ho000000wwdj</masterLabel>
+                <sortOrder>1</sortOrder>
+            </genAiPluginInstructions>
+            <language>en_US</language>
+            <localDeveloperName>off_topic</localDeveloperName>
+            <masterLabel>Off Topic</masterLabel>
+            <pluginType>Topic</pluginType>
+        </localTopics>
+        <masterLabel>Contentful Knowledge Assistant</masterLabel>
+        <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+    </planner>
+    <smallTalkEnabled>false</smallTalkEnabled>
+    <staticPromptsEnabled>false</staticPromptsEnabled>
+    <status>Inactive</status>
+    <stopRecPrompts>false</stopRecPrompts>
+    <surfacesEnabled>false</surfacesEnabled>
+    <toneType>Casual</toneType>
+    <version>1</version>
+    <welcomeMessage>Hi! I&apos;m the Contentful Knowledge Assistant. Ask me a product-care question, or ask me to draft a customer reply in any language.</welcomeMessage>
+</AiAgentDefinitionVersion>

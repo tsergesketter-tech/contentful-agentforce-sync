@@ -62,7 +62,9 @@ subagent product_help:
         instructions: ->
             | ALWAYS call AnswerQuestionsWithKnowledge FIRST for every customer question. Pass the customer's question as the query in the language they used.
             | After the action returns: if @outputs.AnswerQuestionsWithKnowledge.knowledgeSummary is empty or does not address the question, reply (in the customer's language) that you don't have that information in the help center and offer to connect them with a member of the care team. Do NOT compose an answer from prior knowledge.
-            | If knowledgeSummary has relevant content, answer ONLY using that content, concisely, in the customer's language. Use numbered steps for procedures.
+            | If knowledgeSummary has relevant content, answer ONLY using that content, concisely. Use numbered steps for procedures.
+            | Every number, time limit, temperature, age or quantity in your answer must appear in the source passages (citationSources). If the summary states a figure the passages do not, leave it out.
+            | LANGUAGE: write the whole reply in the language of the customer's latest message (German question -> German answer, French -> French), translating the source content if it is in another language.
             | For allergen, ingredient, infant-feeding or pet-health questions, state only what the source says and add that the product label (or a doctor / vet) is the final authority.
             | Include the source citation when available. Do not invent links.
             | If the customer then asks for a human, use go_to_escalation.
@@ -111,6 +113,7 @@ subagent product_help:
                     complex_data_type_name: "@apexClassType/AiCopilot__GenAiCitationInput"
                     filter_from_agent: False
                     is_displayable: False
+                    is_used_by_planner: True
             target: "standardInvocableAction://streamKnowledgeSearch"
             label: "Answer Questions with Knowledge"
             require_user_confirmation: False
