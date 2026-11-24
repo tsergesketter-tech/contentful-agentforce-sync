@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contentful_Edit_Url__c</fullName>
+    <description>Link to the entry in the Contentful web app (the approved source).</description>
+    <label>Contentful Entry</label>
+    <required>false</required>
+    <type>Url</type>
+</CustomField>

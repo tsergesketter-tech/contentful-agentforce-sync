@@ -1,0 +1,134 @@
+{
+  "functions": [
+    {
+      "id": "agentforceContentSync",
+      "name": "Publish -> Agentforce / Knowledge Sync",
+      "description": "On Entry.publish/unpublish/delete for a content type with an active agentforceSyncLinkage: pushes/deletes Data 360 ContentfulKnowledge rows and publishes/archives Salesforce Knowledge articles.",
+      "path": "functions/agentforceContentSync.js",
+      "entryFile": "functions/agentforceContentSync.ts",
+      "allowNetworks": [
+        "trailsignup-fb4f077cdf5625.my.salesforce.com",
+        "hfqt1mjtg14tmmjth12tcnrwg8.c360a.salesforce.com"
+      ],
+      "accepts": [
+        "appevent.handler"
+      ]
+    },
+    {
+      "id": "backfillContentType",
+      "name": "Backfill Content Type",
+      "description": "Syncs every published entry of a linked content type to Data 360 and/or Knowledge.",
+      "path": "functions/backfillContentType.js",
+      "entryFile": "functions/backfillContentType.ts",
+      "allowNetworks": [
+        "trailsignup-fb4f077cdf5625.my.salesforce.com",
+        "hfqt1mjtg14tmmjth12tcnrwg8.c360a.salesforce.com"
+      ],
+      "accepts": [
+        "appaction.call"
+      ]
+    },
+    {
+      "id": "provisionAgentforce",
+      "name": "Provision Agentforce Pipeline",
+      "description": "Checks/provisions the Salesforce side: Ingestion API connection, schema, DLO, stream, DMO, mapping, search index, retriever, and the Knowledge endpoint.",
+      "path": "functions/provisionAgentforce.js",
+      "entryFile": "functions/provisionAgentforce.ts",
+      "allowNetworks": [
+        "trailsignup-fb4f077cdf5625.my.salesforce.com",
+        "hfqt1mjtg14tmmjth12tcnrwg8.c360a.salesforce.com"
+      ],
+      "accepts": [
+        "appaction.call"
+      ]
+    },
+    {
+      "id": "searchKnowledge",
+      "name": "Search Knowledge (test retrieval)",
+      "description": "Runs the retriever's hybrid search across every synced content type and locale; also returns per-type index coverage.",
+      "path": "functions/searchKnowledge.js",
+      "entryFile": "functions/searchKnowledge.ts",
+      "allowNetworks": [
+        "trailsignup-fb4f077cdf5625.my.salesforce.com",
+        "hfqt1mjtg14tmmjth12tcnrwg8.c360a.salesforce.com"
+      ],
+      "accepts": [
+        "appaction.call"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "backfillContentType",
+      "name": "Backfill Content Type",
+      "description": "Syncs every published entry of a linked content type.",
+      "type": "function-invocation",
+      "functionId": "backfillContentType",
+      "category": "Custom",
+      "parameters": [
+        {
+          "id": "linkageEntryId",
+          "name": "agentforceSyncLinkage entry id",
+          "type": "Symbol",
+          "required": true
+        },
+        {
+          "id": "skip",
+          "name": "Skip (continue a large backfill)",
+          "type": "Symbol",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "provisionAgentforce",
+      "name": "Provision Agentforce Pipeline",
+      "description": "Checks (status) or creates (provision) the Data 360 + Knowledge setup.",
+      "type": "function-invocation",
+      "functionId": "provisionAgentforce",
+      "category": "Custom",
+      "parameters": [
+        {
+          "id": "operation",
+          "name": "Operation (status | provision)",
+          "type": "Symbol",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "searchKnowledge",
+      "name": "Search Knowledge",
+      "description": "Hybrid search over the shared Contentful Knowledge index (operation=search|stats).",
+      "type": "function-invocation",
+      "functionId": "searchKnowledge",
+      "category": "Custom",
+      "parameters": [
+        {
+          "id": "operation",
+          "name": "Operation (search | stats)",
+          "type": "Symbol",
+          "required": false
+        },
+        {
+          "id": "query",
+          "name": "Query",
+          "type": "Symbol",
+          "required": false
+        },
+        {
+          "id": "contentTypeId",
+          "name": "Content type filter",
+          "type": "Symbol",
+          "required": false
+        },
+        {
+          "id": "limit",
+          "name": "Limit",
+          "type": "Symbol",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

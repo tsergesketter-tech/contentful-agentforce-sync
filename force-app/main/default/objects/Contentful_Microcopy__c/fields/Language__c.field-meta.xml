@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Language__c</fullName><label>Language</label><description>Salesforce-style code, e.g. en_US, fr_CA</description><type>Text</type><length>20</length><required>true</required>
+</CustomField>
